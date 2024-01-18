@@ -1,0 +1,39 @@
+﻿@page "/monthlyactivities"
+
+<h3>Monthly Activities</h3>
+
+<div>
+    <ul>
+        <li>Check your pipes.</li>
+        <li>Clean shower cabin.</li>
+        <li>Clean the washing machine.</li>
+        <li>Auto washing for the washing machine.</li>
+        <li>Auto washing for the plates washing machine.</li>
+        <li>Check your resources.</li>
+        <li>Check your finance.</li>
+    </ul>
+</div>
+
+<div>
+    <p>Output: @message</p>
+
+    <button onclick="document.getElementById('my-dialog').showModal()">
+        Show modal dialog
+    </button>
+
+    <dialog id="my-dialog" @onclose="OnClose" @oncancel="OnCancel">
+        <p>Hi there!</p>
+
+        <form method="dialog">
+            <button>Close</button>
+        </form>
+    </dialog>
+</div>
+
+@code {
+    private string? message;
+
+    private void OnClose(EventArgs e) => message += "onclose, ";
+
+    private void OnCancel(EventArgs e) => message += "oncancel, ";
+}

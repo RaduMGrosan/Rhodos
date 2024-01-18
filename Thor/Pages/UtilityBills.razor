@@ -1,0 +1,86 @@
+﻿@page "/utilitybills"
+
+<PageTitle>Utility Bills</PageTitle>
+
+@using Thor.Data
+
+@using Thor.Data.Enums
+@using Thor.Data.Models
+@inject UtilityBillService UtilityBillService
+
+<h1>Utility Bills</h1>
+
+<select class="custom-select" @onchange="@OnValueChanged" title="Bill Type is required">
+    <option value="Select" selected disabled="disabled">Choose Bill Type</option>
+    @foreach (var billType in billTypes)
+    {
+        <option value="@billType.Value"> @billType.Value</option>
+    }
+</select>
+
+<select class="custom-select" @onchange="@OnCompanyChanged" title="Company Name is required">
+    <option value="Select" selected disabled="disabled">Choose company Name</option>
+    <option value="All">All Companies</option>
+    @foreach (var company in companyList)
+    {
+        <option value="@company"> @company</option>
+    }
+</select>
+
+<table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Company Name</th>
+                <th>Year</th>
+                <th>Month</th>
+                <th>Payed</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bill in bills)
+            {
+                <tr>
+                    <td>@bill.Id</td>
+                    <td>@bill.GetBillType(bill.Type)</td>
+                    <td>@bill.CompanyName</td>
+                    <td>@bill.Year</td>
+                    <td>@bill.Month</td>
+                    <td>@bill.Payed</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+@code {
+    private UtilityBill[] bills = new UtilityBill[] { };
+    public IList<BillType> billTypes = new List<BillType>() { 
+    new BillType() { Name = "All Types", Value = BillTypeEnum.All},
+    new BillType() { Name = "Heat", Value = BillTypeEnum.Heat},
+    new BillType() { Name = "Electricity", Value =  BillTypeEnum.Electricity},
+    new BillType() { Name = "CableNet", Value =  BillTypeEnum.CableNet},
+    new BillType() { Name = "Maintenance", Value =  BillTypeEnum.Maintenance},
+    new BillType() { Name = "Water", Value =  BillTypeEnum.Water},
+    new BillType() { Name = "Garbage", Value =  BillTypeEnum.Garbage}};
+    public List<string?> companyList = new List<string?>(); 
+
+    protected override async Task OnInitializedAsync()
+    {
+        bills = await UtilityBillService.GetBillsAsync();
+        companyList = await UtilityBillService.GetCompanyList();
+    }
+
+    private Task OnValueChanged(ChangeEventArgs e)
+    {
+        bills = UtilityBillService.GetBillsByType(e.Value?.ToString()).Result;
+        return UtilityBillService.GetBillsByType(e.Value?.ToString());
+    } 
+    
+    private Task OnCompanyChanged(ChangeEventArgs e)
+    {
+        bills = UtilityBillService.GetBillsByCompany(e.Value?.ToString()).Result;
+        return UtilityBillService.GetBillsByCompany(e.Value?.ToString());
+    }
+}
