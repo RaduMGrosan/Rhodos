@@ -5,7 +5,6 @@
         public double Index { get; set; }
 
         public ElectricityBill(string? companyName, int year, string? month, decimal payed) : base (companyName, year, month, payed) {
-            Type = Enums.BillTypeEnum.Electricity;
         }
 
         public override string GetTitle()

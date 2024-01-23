@@ -30,7 +30,7 @@ namespace Thor.Data
         }
 
         public Task<UtilityBill[]> GetBillsByType(string? type) {
-            var bills = type == BillTypeEnum.All.ToString() ? Bills : Bills.Where(x => x.Type.ToString() == type).ToArray();
+            var bills = type == BillTypeEnum.All.ToString() ? Bills : Bills.Where(x => x.BillType?.Value.ToString() == type).ToArray();
             return Task.FromResult(bills);
         }
 

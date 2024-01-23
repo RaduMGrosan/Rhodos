@@ -5,8 +5,9 @@ namespace Thor.Data
 {
     public class UtilityBill: BaseModel
     {
+        public long? UserId { get; set; }
 
-        public BillTypeEnum Type { get; set; }
+        public BillType? BillType { get; set; }
 
         public string? CompanyName { get; set; }
 
@@ -24,7 +25,7 @@ namespace Thor.Data
         }
 
         public virtual string GetTitle() {
-            return $"The company {this.CompanyName} provides {GetBillType(this.Type)} for clients.";
+            return $"The company {this.CompanyName} provides {BillType?.Value} for clients.";
         }
 
         public string GetBillType(BillTypeEnum type) {

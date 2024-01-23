@@ -4,7 +4,6 @@
     {
         public CableNetBill(string? companyName, int year, string? month, decimal payed) : base(companyName, year, month, payed)
         {
-            Type = Enums.BillTypeEnum.CableNet;
         }
     }
 }
