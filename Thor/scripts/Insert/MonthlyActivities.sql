@@ -16,4 +16,3 @@ VALUES
     (8, 'Verificare instrumente financiare', 2);
 GO
 
-select * from dbo.MonthlyActivities;

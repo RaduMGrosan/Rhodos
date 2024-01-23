@@ -1,12 +1,12 @@
 USE [Rhodos]
 GO
 
-/****** Object:  Table [dbo].[BillType]    Script Date: 1/23/2024 4:22:51 PM ******/
+/****** Object:  Table [dbo].[BillType]    Script Date: 1/23/2024 4:39:50 PM ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[BillType]') AND type in (N'U'))
 DROP TABLE [dbo].[BillType]
 GO
 
-/****** Object:  Table [dbo].[BillType]    Script Date: 1/23/2024 4:22:51 PM ******/
+/****** Object:  Table [dbo].[BillType]    Script Date: 1/23/2024 4:39:50 PM ******/
 SET ANSI_NULLS ON
 GO
 

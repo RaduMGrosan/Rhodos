@@ -1,9 +1,5 @@
---CREATE TABLE dbo.BillType
---(
---    Id BIGINT PRIMARY KEY,
---    Name NVARCHAR(MAX),
---    Value NVARCHAR(MAX)
---);
+USE [Rhodos]
+GO
 
 INSERT INTO dbo.BillType (Id, Name, Value)
 VALUES
@@ -14,5 +10,4 @@ VALUES
 	(5, 'Maintenance', '4'),
 	(6, 'Water', '5'),
 	(7, 'Garbage', '6');
-
-	select *from dbo.BillType;
+GO
