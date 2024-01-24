@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Thor.Data;
+using Thor.Data.Services.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 

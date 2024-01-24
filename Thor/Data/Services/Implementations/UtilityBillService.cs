@@ -3,9 +3,9 @@ using Thor.Data.Enums;
 using Thor.Data.Models;
 using Thor.Data.Services.Interfaces;
 
-namespace Thor.Data
+namespace Thor.Data.Services.Implementations
 {
-    public class UtilityBillService: IUtilityBillService
+    public class UtilityBillService : IUtilityBillService
     {
         private static readonly UtilityBill[] Bills = new[]
         {
@@ -29,7 +29,8 @@ namespace Thor.Data
             return Task.FromResult(Bills);
         }
 
-        public Task<UtilityBill[]> GetBillsByType(string? type) {
+        public Task<UtilityBill[]> GetBillsByType(string? type)
+        {
             var bills = type == BillTypeEnum.All.ToString() ? Bills : Bills.Where(x => x.BillType?.Value.ToString() == type).ToArray();
             return Task.FromResult(bills);
         }
@@ -40,7 +41,8 @@ namespace Thor.Data
             return Task.FromResult(bills);
         }
 
-        public Task<List<string?>> GetCompanyList() {
+        public Task<List<string?>> GetCompanyList()
+        {
             var companyList = Bills.Select(x => x.CompanyName).Distinct().ToList();
             return Task.FromResult(companyList);
         }
