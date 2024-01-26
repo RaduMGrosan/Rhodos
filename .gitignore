@@ -8,3 +8,4 @@
 /Thor/.cr/personal
 /Thor/obj
 *.user
+/Thor/bin/Debug/net8.0
